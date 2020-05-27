@@ -1,2 +1,3 @@
 pandas
 mead-baseline
+iobes==1.2.1
