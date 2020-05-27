@@ -33,16 +33,26 @@ def main():
     parser.add_argument("--cache", default="data")
     parser.add_argument("--surface-index", "--surface_index", default=0, type=int)
     parser.add_argument("--entity-index", "--entity_index", default=-1, type=int)
-    parser.add_argument("--span-type", "--span_type", default=SpanEncoding.IOBES, type=SpanEncoding.from_string, choices=("iobes", "bio", "iob"))
+    parser.add_argument(
+        "--span-type",
+        "--span_type",
+        default=SpanEncoding.IOBES,
+        type=SpanEncoding.from_string,
+        choices=("iobes", "bio", "iob"),
+    )
     parser.add_argument("--types", action="store_true")
     parser.add_argument("--delim")
     args = parser.parse_args()
 
     dataset = download_dataset(args.dataset, args.datasets_index, args.cache)
 
-    emissions, _ = estimate_counts(list(read_conll(dataset['train_file'], args.delim)), args.surface_index, args.entity_index)
+    emissions, _ = estimate_counts(
+        list(read_conll(dataset["train_file"], args.delim)), args.surface_index, args.entity_index
+    )
 
-    easy, total = easy_end(dataset['valid_file'], emissions, args.surface_index, args.entity_index, args.span_type, args.delim, args.types)
+    easy, total = easy_end(
+        dataset["valid_file"], emissions, args.surface_index, args.entity_index, args.span_type, args.delim, args.types
+    )
 
     print(f"There are {len(easy)} entities that end with an unambiguous tokens.")
     print(f"There are {len(total)} entities in the whole dataset.")

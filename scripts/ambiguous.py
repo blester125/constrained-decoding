@@ -17,7 +17,9 @@ def main():
 
     dataset = download_dataset(args.dataset, args.datasets_index, args.cache)
 
-    emissions, _ = estimate_counts(list(read_conll(dataset['train_file'], args.delim)), args.surface_index, args.entity_index)
+    emissions, _ = estimate_counts(
+        list(read_conll(dataset["train_file"], args.delim)), args.surface_index, args.entity_index
+    )
 
     ambiguous = 0
     for token, emission in emissions.items():

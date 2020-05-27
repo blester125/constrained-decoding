@@ -36,9 +36,10 @@ def main():
 
     dataset = download_dataset(args.dataset, args.datasets_index, args.cache)
 
-    real, total = real_transitions(dataset['train_file'], args.entity_index, args.delim)
+    real, total = real_transitions(dataset["train_file"], args.entity_index, args.delim)
 
     print(f"{real / total * 100}% of transitions are real.")
+
 
 if __name__ == "__main__":
     main()

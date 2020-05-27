@@ -44,17 +44,27 @@ def main():
     parser.add_argument("--cache", default="data")
     parser.add_argument("--surface-index", "--surface_index", default=0, type=int)
     parser.add_argument("--entity-index", "--entity_index", default=-1, type=int)
-    parser.add_argument("--span-type", "--span_type", default=SpanEncoding.IOBES, type=SpanEncoding.from_string, choices=("iobes", "bio", "iob"))
+    parser.add_argument(
+        "--span-type",
+        "--span_type",
+        default=SpanEncoding.IOBES,
+        type=SpanEncoding.from_string,
+        choices=("iobes", "bio", "iob"),
+    )
     parser.add_argument("--types", action="store_true")
     parser.add_argument("--delim")
     args = parser.parse_args()
 
     dataset = download_dataset(args.dataset, args.datasets_index, args.cache)
 
-    emissions, _ = estimate_counts(list(read_conll(dataset['train_file'], args.delim)), args.surface_index, args.entity_index)
+    emissions, _ = estimate_counts(
+        list(read_conll(dataset["train_file"], args.delim)), args.surface_index, args.entity_index
+    )
 
     transition_mask = make_transition_mask(dataset, args.span_type, args.entity_index, args.delim)
-    domd, ambig_domd, total, ambig_total = strictly_dominated(dataset['valid_file'], emissions, transition_mask, args.surface_index, args.entity_index, args.delim)
+    domd, ambig_domd, total, ambig_total = strictly_dominated(
+        dataset["valid_file"], emissions, transition_mask, args.surface_index, args.entity_index, args.delim
+    )
 
     print(f"There are {domd} tokens that are strictly dominated.")
     print(f"There are {ambig_domd} ambiguous tokens that are strictly dominated.")

@@ -20,10 +20,9 @@ def download_dataset(dataset: str, datasets_index: str, cache: str) -> Dict[str,
     return DataDownloader(dataset, cache).download()
 
 
-
 def read_all_tags(dataset, entity_idx, delim):
     tags = set()
-    for ds in (dataset['train_file'], dataset['valid_file'], dataset['test_file']):
+    for ds in (dataset["train_file"], dataset["valid_file"], dataset["test_file"]):
         for sent in read_conll(ds, delim):
             tags.update(list(zip(*sent))[entity_idx])
     return tags
@@ -34,7 +33,9 @@ def make_transition_mask(dataset, span_type, entity_idx, delim):
     return transitions_to_tuple_map(transitions_legality(tags, span_type))
 
 
-def read_entities(file_name: str, entity_index: int = -1, span_type: SpanEncoding = SpanEncoding.IOBES, delim: Optional[str] = None) -> List[Span]:
+def read_entities(
+    file_name: str, entity_index: int = -1, span_type: SpanEncoding = SpanEncoding.IOBES, delim: Optional[str] = None
+) -> List[Span]:
     entities = []
     for sentence in read_conll(file_name, delim):
         tags = list(zip(*sentence))[entity_index]

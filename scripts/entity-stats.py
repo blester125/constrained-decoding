@@ -22,7 +22,7 @@ def read(dataset, entity_index, span_type, span_delim, delim):
     for data_type, file_name in dataset.items():
         types = read_entities(file_name, entity_index, span_type, span_delim, delim)
         types = pd.DataFrame(types)
-        types['dataset'] = data_type
+        types["dataset"] = data_type
         all_types.append(types)
     return pd.concat(all_types, ignore_index=False)
 
@@ -49,29 +49,25 @@ def main():
     print(f"Total number of entities: {len(data)}")
     print()
     print("Entity counts per type:")
-    print(data.groupby(['type']).agg(['count'])['length'])
+    print(data.groupby(["type"]).agg(["count"])["length"])
     print()
     print("Entity counts per dataset:")
-    print(data.groupby(['dataset']).agg(['count'])['length'])
+    print(data.groupby(["dataset"]).agg(["count"])["length"])
     print()
     print("Entity counts per type per dataset:")
-    print(data.groupby(['dataset', 'type']).agg(['count'])['length'])
+    print(data.groupby(["dataset", "type"]).agg(["count"])["length"])
     print()
     print("Entity lengths stats:")
-    print(data[['length']].agg(['mean', 'std', 'min', 'max', mode]).T)
+    print(data[["length"]].agg(["mean", "std", "min", "max", mode]).T)
 
     print("Entity lengths by type:")
-    print(data[['type', 'length']].groupby(['type']).agg(['mean', 'std', 'min', 'max', mode]))
+    print(data[["type", "length"]].groupby(["type"]).agg(["mean", "std", "min", "max", mode]))
     print()
     print("Entity lengths by dataset:")
-    print(data[['dataset', 'length']].groupby(['dataset']).agg(['mean', 'std', 'min', 'max', mode]))
+    print(data[["dataset", "length"]].groupby(["dataset"]).agg(["mean", "std", "min", "max", mode]))
     print()
     print("entity length by dataset by type:")
-    print(data.groupby(['dataset', 'type']).agg(['mean', 'std', 'min', 'max', mode]))
-
-    print()
-
-    import pdb; pdb.set_trace()
+    print(data.groupby(["dataset", "type"]).agg(["mean", "std", "min", "max", mode]))
 
 
 if __name__ == "__main__":
