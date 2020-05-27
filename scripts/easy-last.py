@@ -17,11 +17,15 @@ def easy_end(file_name, emissions, surface_idx, entity_idx, span_type, delim, ty
             if (end_token, entity.type) in type_surface and types:
                 continue
             type_surface.add((end_token, entity.type))
-            # If we had never seen this token before we won't have any reason to think it is
-            # an `I-` so it should be an easier E- to get so we don't have to check for if
-            # the emissions exist
-            if f"I-{entity.type}" not in emissions[end_token]:
-                easy.append(entity)
+            if span_type is SpanEncoding.IOBES:
+                # If we had never seen this token before we won't have any reason to think it is
+                # an `I-` so it should be an easier E- to get so we don't have to check for if
+                # the emissions exist
+                if f"I-{entity.type}" not in emissions[end_token]:
+                    easy.append(entity)
+            elif span_type is SpanEncoding.BIO:
+                if not emissions[end_token] or len(emissions[end_token]) == 1:
+                    easy.append(entity)
             total.append(entity)
     return easy, total
 
@@ -34,11 +38,7 @@ def main():
     parser.add_argument("--surface-index", "--surface_index", default=0, type=int)
     parser.add_argument("--entity-index", "--entity_index", default=-1, type=int)
     parser.add_argument(
-        "--span-type",
-        "--span_type",
-        default=SpanEncoding.IOBES,
-        type=SpanEncoding.from_string,
-        choices=("iobes", "bio", "iob"),
+        "--span-type", "--span_type", default=SpanEncoding.IOBES, type=SpanEncoding.from_string,
     )
     parser.add_argument("--types", action="store_true")
     parser.add_argument("--delim")

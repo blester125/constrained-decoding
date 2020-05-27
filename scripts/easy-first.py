@@ -43,11 +43,7 @@ def main():
     parser.add_argument("--surface-index", "--surface_index", default=0, type=int)
     parser.add_argument("--entity-index", "--entity_index", default=-1, type=int)
     parser.add_argument(
-        "--span-type",
-        "--span_type",
-        default=SpanEncoding.IOBES,
-        type=SpanEncoding.from_string,
-        choices=("iobes", "bio", "iob"),
+        "--span-type", "--span_type", default=SpanEncoding.IOBES, type=SpanEncoding.from_string,
     )
     parser.add_argument("--types", action="store_true")
     parser.add_argument("--delim")

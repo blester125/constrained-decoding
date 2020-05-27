@@ -10,11 +10,7 @@ def main():
     parser.add_argument("--cache", default="data")
     parser.add_argument("--entity-index", "--entity_index", default=-1, type=int)
     parser.add_argument(
-        "--span-type",
-        "--span_type",
-        default=SpanEncoding.IOBES,
-        type=SpanEncoding.from_string,
-        choices=("iobes", "bio", "iob"),
+        "--span-type", "--span_type", default=SpanEncoding.IOBES, type=SpanEncoding.from_string,
     )
     parser.add_argument("--delim")
     args = parser.parse_args()

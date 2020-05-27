@@ -10,11 +10,11 @@ class PremadeTransitionsTagger(TaggerGreedyDecoder):
     def __init__(self, *args, **kwargs):
         transitions = kwargs.pop("transitions")
         super().__init__(*args, **kwargs)
-        self.register_buffer("transitions", torch.from_numpy(transitions))
+        self.register_buffer("transitions_p", torch.from_numpy(transitions).unsqueeze(0))
 
     @property
     def transitions(self):
-        return self.transitions.masked_fill(self.constraint_mask, -1e4)
+        return self.transitions_p.masked_fill(self.constraint_mask, -1e4)
 
 
 @register_model(task="tagger", name="premade")
@@ -35,5 +35,5 @@ class RemadeTaggerModle(RNNTaggerModel):
                 trans[src_idx, tgt_idx] = label_trans[label_vocab[src], label_vocab[tgt]]
 
         name = kwargs.get("decode_name")
-        self.constraint_mask = kwargs.get("constraint_mask")
-        return PremadeTransitionsTagger(len(self.labels), self.constraint_mask, name=name, transitions=trans)
+        self.constraint_mask = kwargs.get("constraint_mask").unsqueeze(0)
+        return PremadeTransitionsTagger(len(self.labels), self.constraint_mask, transitions=trans)
