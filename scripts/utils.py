@@ -70,8 +70,8 @@ def estimate_counts(sentences: ConllCorpus, surface_index: int = 0, tag_index: i
 
 
 def normalize_transitions(transitions: Transition) -> Tuple[Transition, Transition]:
-    probs = Params
-    rev_probs = Params
+    probs = defaultdict(Counter)
+    rev_probs = defaultdict(Counter)
     for src, tgts in transitions.items():
         norm = sum(tgts.values())
         for tgt in tgts:

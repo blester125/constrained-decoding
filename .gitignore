@@ -130,3 +130,6 @@ dmypy.json
 
 data/*
 internal-datasets.json
+
+tf-tagger-*
+results/*

@@ -1,0 +1,21 @@
+{
+  "S-ORG": 0,
+  "B-PER": 1,
+  "S-LOC": 2,
+  "O": 3,
+  "S-PER": 4,
+  "S-MISC": 5,
+  "B-ORG": 6,
+  "B-MISC": 7,
+  "B-LOC": 8,
+  "<GO>": 9,
+  "<EOS>": 10,
+  "E-PER": 11,
+  "I-PER": 12,
+  "E-ORG": 13,
+  "I-ORG": 14,
+  "I-MISC": 15,
+  "E-MISC": 16,
+  "E-LOC": 17,
+  "I-LOC": 18
+}
