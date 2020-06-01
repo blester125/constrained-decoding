@@ -30,11 +30,14 @@
       "vectorizer": {
         "type": "dict2d"
       },
-      "embeddings": { "dsz": 30, "wsz": 30, "type": "char-conv" }
+      "embeddings": {
+        "dsz": 30,
+        "wsz": 30,
+        "type": "char-conv"
+      }
     }
   ],
-  "preproc": {
-  },
+  "preproc": {},
   "dataset": "snips-conll",
   "reader": {
     "type": "default",
@@ -50,7 +53,10 @@
     ],
     "hsz": 400,
     "dropout": 0.5,
-    "dropin": {"word": 0.1, "gn": 0.1},
+    "dropin": {
+      "word": 0.1,
+      "gn": 0.1
+    },
     "rnntype": "blstm",
     "layers": 1,
     "constrain_decode": true,
@@ -67,4 +73,3 @@
     "span_type": "iobes"
   }
 }
-
