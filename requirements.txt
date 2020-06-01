@@ -1,3 +1,5 @@
 pandas
 mead-baseline
 iobes==1.2.1
+tensorflow>=2.0
+torch>=1.13
