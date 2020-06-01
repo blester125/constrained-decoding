@@ -1,8 +1,7 @@
 {
   "task": "tagger",
   "batchsz": 9,
-  "conll_output": "results/ontonotes-pre-trans.conll",
-  "basedir": "results/ontonotes-pre-trans",
+  "conll_output": "conllresults.conll",
   "unif": 0.1,
   "features": [
     {
@@ -57,9 +56,7 @@
     "rnntype": "blstm",
     "layers": 2,
     "constrain_decode": true,
-    "crf": 0,
-    "label_vocab": "transitions/ontonotes-iobes/vocab.json",
-    "label_trans": "transitions/ontonotes-iobes/transitions.npy"
+    "crf": 1
   },
   "train": {
     "epochs": 100,

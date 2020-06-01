@@ -61,7 +61,7 @@
 	"rnntype": "blstm",
 	"layers": 1,
 	"constrain_decode":true,
-	"crf": 1
+	"crf": 0
     },
     "train": {
 	"epochs": 60,

@@ -1,15 +1,15 @@
 {
     "task": "tagger",
-    "basedir": "wnut-multi-emb-iobes",
+    "basedir": "results/wnut-multi-emb-iobes-no-crf-pre-trans",
     "batchsz": 20,
-    "conll_output": "wnutresults.conll",
+    "conll_output": "results/wnutresults.conll",
     "unif": 0.1,
     "preproc": {
-	"mxlen": 60,
-	"mxwlen": 40
+	  "mxlen": 60,
+  	  "mxwlen": 40
     },
     "features": [
-	{
+	  {
 	    "name": "word",
 	    "vectorizer": {
 		"type": "dict1d",
@@ -17,17 +17,17 @@
                 "transform": "baseline.lowercase"
 	    },
 	    "embeddings": { "label": "glove-twitter-27B"}
-	},
-	{
+     },
+	  {
 	    "name": "word2",
 	    "vectorizer": {
 		"type": "dict1d",
 		"fields": "text",
                 "transform": "baseline.lowercase"
 	    },
-	    "embeddings": { "label": "glove-840B"}
-	},
-        {
+	    "embeddings": { "label": "glove-42B"}
+	  },
+      {
             "name": "word3",
             "vectorizer": {
                 "type": "dict1d",
@@ -35,12 +35,12 @@
                 "transform": "baseline.web_cleanup"
             },
             "embeddings": { "label": "w2v-twitter-30M" }
-        },
-	{
+      },
+	  {
 	    "name": "char",
 	    "vectorizer": { "type": "dict2d" },
 	    "embeddings": { "dsz": 30, "wsz": 30, "type": "char-conv" }
-	}
+	  }
     ],
     "backend": "pytorch",
     "dataset": "wnut-iobes",
@@ -52,27 +52,29 @@
         }
     },
     "model": {
-	"model_type": "default",
-	"cfiltsz": [
+	  "model_type": "premade",
+	  "cfiltsz": [
 	    3
-	],
-	"hsz": 200,
-	"dropout": 0.5,
-	"rnntype": "blstm",
-	"layers": 1,
-	"constrain_decode":true,
-	"crf": 1
+	  ],
+	  "hsz": 400,
+	  "dropout": 0.5,
+	  "rnntype": "blstm",
+	  "layers": 1,
+	  "constrain_decode":true,
+	  "crf": 0,
+      "label_vocab": "transitions/wnut-iobes/vocab.json",
+      "label_trans": "transitions/wnut-iobes/transitions.npy"
     },
     "train": {
-	"epochs": 60,
-	"optim": "sgd",
-	"decay": 0,
-	"eta": 0.015,
-	"mom": 0.9,
-	"patience": 20,
-	"early_stopping_metric": "f1",
-	"clip": 5.0,
-        "span_type": "iobes"
+	  "epochs": 60,
+	  "optim": "sgd",
+	  "decay": 0,
+	  "eta": 0.015,
+	  "mom": 0.9,
+	  "patience": 20,
+	  "early_stopping_metric": "f1",
+	  "clip": 5.0,
+      "span_type": "iobes"
     }
 }
 

@@ -1,13 +1,14 @@
 {
   "task": "tagger",
-  "conll_output": "conllresults.conll",
+  "batchsz": 10,
+  "conll_output": "snips.conll",
+  "basedir": "./snips-sf",
   "unif": 0.1,
   "features": [
     {
       "name": "word",
       "vectorizer": {
         "type": "dict1d",
-        "fields": "text",
         "transform": "baseline.lowercase"
       },
       "embeddings": {
@@ -15,14 +16,13 @@
       }
     },
     {
-      "name": "senna",
+      "name": "gn",
       "vectorizer": {
         "type": "dict1d",
-        "fields": "text",
         "transform": "baseline.lowercase"
       },
       "embeddings": {
-        "label": "senna"
+        "label": "w2v-gn"
       }
     },
     {
@@ -33,8 +33,9 @@
       "embeddings": { "dsz": 30, "wsz": 30, "type": "char-conv" }
     }
   ],
-  "backend": "pytorch",
-  "dataset": "conll-iobes",
+  "preproc": {
+  },
+  "dataset": "snips-conll",
   "reader": {
     "type": "default",
     "named_fields": {
@@ -43,20 +44,19 @@
     }
   },
   "model": {
-    "type": "default",
+    "model_type": "default",
     "cfiltsz": [
       3
     ],
     "hsz": 400,
     "dropout": 0.5,
-    "dropin": {"word": 0.1,"senna": 0.1},
+    "dropin": {"word": 0.1, "gn": 0.1},
     "rnntype": "blstm",
     "layers": 1,
     "constrain_decode": true,
-    "crf": 1
+    "crf": 0
   },
   "train": {
-    "batchsz": 10,
     "epochs": 100,
     "optim": "sgd",
     "eta": 0.015,

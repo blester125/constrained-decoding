@@ -52,8 +52,8 @@
     "dropin": {"word": 0.1,"senna": 0.1},
     "rnntype": "blstm",
     "layers": 1,
-    "constrain_decode": true,
-    "crf": 1
+    "constrain_decode": false,
+    "crf": 0
   },
   "train": {
     "batchsz": 10,

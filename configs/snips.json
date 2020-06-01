@@ -1,10 +1,8 @@
 {
-  "backend": "pytorch",
   "task": "tagger",
   "batchsz": 10,
-  "conll_output": "results/snips-pre-trains.conll",
-  "basedir": "results/snips-pre-trans",
-  "modules": ["models/estimated_transitions_pyt.py"],
+  "conll_output": "snips.conll",
+  "basedir": "./snips-sf",
   "unif": 0.1,
   "features": [
     {
@@ -18,13 +16,13 @@
       }
     },
     {
-      "name": "senna",
+      "name": "gn",
       "vectorizer": {
         "type": "dict1d",
         "transform": "baseline.lowercase"
       },
       "embeddings": {
-        "label": "senna"
+        "label": "w2v-gn"
       }
     },
     {
@@ -37,7 +35,7 @@
   ],
   "preproc": {
   },
-  "dataset": "snips-iobes",
+  "dataset": "snips-conll",
   "reader": {
     "type": "default",
     "named_fields": {
@@ -52,13 +50,11 @@
     ],
     "hsz": 400,
     "dropout": 0.5,
-    "dropin": {"word": 0.1,"senna": 0.1},
+    "dropin": {"word": 0.1, "gn": 0.1},
     "rnntype": "blstm",
     "layers": 1,
     "constrain_decode": true,
-    "crf": 0,
-    "label_vocab": "transitions/snips-iobes/vocab.json",
-    "label_trans": "transitions/snips-iobes/transitions.npy"
+    "crf": 1
   },
   "train": {
     "epochs": 100,

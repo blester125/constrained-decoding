@@ -1,6 +1,7 @@
 {
   "task": "tagger",
-  "conll_output": "conllresults.conll",
+  "conll_output": "results/conll-pre-trans.conll",
+  "basedir": "results/conll-pre-trans",
   "unif": 0.1,
   "features": [
     {
@@ -43,7 +44,7 @@
     }
   },
   "model": {
-    "type": "default",
+    "type": "premade",
     "cfiltsz": [
       3
     ],
@@ -53,7 +54,9 @@
     "rnntype": "blstm",
     "layers": 1,
     "constrain_decode": true,
-    "crf": 1
+    "crf": 0,
+    "label_vocab": "transitions/conll-iobes/vocab.json",
+    "label_trans": "transitions/conll-iobes/transitions.npy"
   },
   "train": {
     "batchsz": 10,

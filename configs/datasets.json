@@ -1,28 +1,5 @@
 [
   {
-    "train_file": "stsa.binary.phrases.train",
-    "valid_file": "stsa.binary.dev",
-    "test_file": "stsa.binary.test",
-    "download": "https://www.dropbox.com/s/7jyi4pi894bh2qh/sst2.tar.gz?dl=1",
-    "sha1": "31eb669609c65af3aa68a381fc760c4eaf801917",
-    "label": "SST2"
-  },
-  {
-    "train_file": "train-tok-shuf.txt",
-    "valid_file": "dev-tok.txt",
-    "test_file": "test-tok.txt",
-    "download": "https://www.dropbox.com/s/3o9ioqp2nh5wdqh/ag-news-tok.tar.gz?dl=1",
-    "label": "AG"
-  },
-  {
-    "train_file": "oct27.train",
-    "valid_file": "oct27.dev",
-    "test_file": "oct27.test",
-    "download":"https://www.dropbox.com/s/6uyfatcgmbmyzkr/twpos.tar.gz?dl=1",
-    "sha1":"78f46aa658126cd0c82b08c081469cc2a8551c66",
-    "label": "twpos"
-  },
-  {
     "train_file": "eng.train.iobes",
     "valid_file": "eng.testa.iobes",
     "test_file": "eng.testb.iobes",
@@ -50,14 +27,6 @@
     "test_file": "wnut17test.conll.iobes",
     "download": "https://www.dropbox.com/s/ue7zfvzhfhpdksz/wnut17-iobes.tar.gz?dl=1",
     "label": "wnut-iobes"
-  },
-  {
-    "train_file": "atis-2.train.iobes",
-    "valid_file": "atis-2.dev.iobes",
-    "test_file": "atis.test.iobes",
-    "download": "https://www.dropbox.com/s/4xfyr676svx2i5j/atis.tar.gz?dl=1",
-    "sha1": "670af66ca326e915a2f887105bea439bfb00693c",
-    "label": "atis-iobes"
   },
   {
     "train_file": "train.conll",
